@@ -23,6 +23,7 @@ def chat(vector_store):
             vector_store,
             question
         )
+
         print("\nRetrieved Documents:\n")
 
         for i, doc in enumerate(documents, start=1):
@@ -30,11 +31,18 @@ def chat(vector_store):
             print(doc.page_content)
             print()
 
-        answer = generate_answer(
+        response = generate_answer(
             llm,
             documents,
             question
         )
 
         print("\nAnswer:\n")
-        print(answer)
+        print(response["answer"])
+
+        print("\nSources:")
+
+        for source in response["sources"]:
+            print(
+                f"- {source['file']} (Page {source['page']})"
+            )
