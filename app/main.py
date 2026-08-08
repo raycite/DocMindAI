@@ -4,9 +4,7 @@ from chatbot import chat
 
 def main():
 
-    pdf_path = "uploads/sample.pdf"
-
-    vector_store = build_vector_store(pdf_path)
+    vector_store = build_vector_store()
 
     chat(vector_store)
 

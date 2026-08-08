@@ -1,19 +1,18 @@
-from loaders import load_pdf
+from loaders import load_documents
 from chunker import split_documents
 from embeddings import get_embedding_model
 from vector_store import create_vector_store
 
 
-def build_vector_store(pdf_path):
+def build_vector_store():
     """
-    Load a PDF, split it into chunks,
-    generate embeddings, and create/load
-    the vector database.
+    Load PDFs from the uploads folder, split them into chunks,
+    generate embeddings, and create/load the vector database.
     """
 
     print("Loading document...")
 
-    documents = load_pdf(pdf_path)
+    documents = load_documents("uploads")
 
     print(f"Original pages: {len(documents)}")
 

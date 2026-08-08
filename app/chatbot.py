@@ -27,10 +27,11 @@ def chat(vector_store):
         print("\nRetrieved Documents:\n")
 
         for i, doc in enumerate(documents, start=1):
+
             print(f"----- Chunk {i} -----")
             print(doc.page_content)
             print()
-
+        
         response = generate_answer(
             llm,
             documents,
