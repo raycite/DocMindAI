@@ -17,6 +17,7 @@ def retrieve_documents(vector_store, question):
         f"strategy={settings['search_type']}"
     )
 
+    # Retrieve a wider set of candidates first
     retriever = vector_store.as_retriever(
         search_type=settings["search_type"],
         search_kwargs={
@@ -26,5 +27,21 @@ def retrieve_documents(vector_store, question):
     )
 
     documents = retriever.invoke(question)
+
+    # Display which files were retrieved
+    print("\nRetrieved document sources:")
+
+    seen_sources = set()
+
+    for doc in documents:
+
+        source = doc.metadata.get(
+            "source",
+            "Unknown"
+        )
+
+        if source not in seen_sources:
+            print(f"- {source}")
+            seen_sources.add(source)
 
     return documents

@@ -7,16 +7,16 @@ from vector_store import create_vector_store
 def build_vector_store():
     """
     Load PDFs from the uploads folder, split them into chunks,
-    generate embeddings, and create/load the vector database.
+    generate embeddings, and create the vector database.
     """
 
-    print("Loading document...")
+    print("Loading documents...")
 
     documents = load_documents("uploads")
 
     print(f"Original pages: {len(documents)}")
 
-    print("Splitting document...")
+    print("Splitting documents...")
 
     chunks = split_documents(documents)
 
@@ -26,7 +26,7 @@ def build_vector_store():
 
     embedding_model = get_embedding_model()
 
-    print("Creating vector database...")
+    print("Creating vector database...") 
 
     vector_store = create_vector_store(
         chunks,
